@@ -27,6 +27,7 @@ void ofApp::setup(){
     //animation setup
     animationIndex=0;
     AnimationStrategy anime1=Animation1(buttons,100);
+    animations.push_back(anime1);
 //    animations.push_back((AnimationStrategy)Animation1(buttons,100));
     
     //gui settings
@@ -39,7 +40,10 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    
+    animations[animationIndex].update();
+    if(animations[animationIndex].isEnd()){
+        animationIndex=(animationIndex+1)%animations.size();
+    }
 }
 
 //--------------------------------------------------------------
