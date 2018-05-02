@@ -20,8 +20,12 @@ void ofApp::setup(){
     
     //button setup
     for(int i=0;i<ARRAY_LENGTH(buttons);i++){
-        buttons[i]=Circle();
+        buttons[i]=Button();
     }
+    
+    //animation setup
+    animationIndex=0;
+    
     
     //gui settings
     gui.setup();
@@ -33,14 +37,14 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    for(Circle b:buttons){
+    for(Button b:buttons){
         b.update();
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    for(Circle b:buttons){
+    for(Button b:buttons){
         b.draw();
     }
     
@@ -53,55 +57,55 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseEntered(int x, int y){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseExited(int x, int y){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg){
-
+    
 }
 
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
-
+void ofApp::dragEvent(ofDragInfo dragInfo){
+    
 }

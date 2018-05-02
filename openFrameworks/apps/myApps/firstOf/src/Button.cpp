@@ -5,21 +5,21 @@
 //  Created by 秋山 耀 on 2018/05/02.
 //
 
-#include "Circle.hpp"
+#include "Button.hpp"
 #include "ofMain.h"
 #include "ofApp.h"
 
-Circle::Circle(){
+Button::Button(){
     position.x=ofRandom(ofGetWidth());
     position.y=ofRandom(ofGetHeight());
     radius=20;
     color=ofColor(ofRandom(0,255),ofRandom(0,255),ofRandom(0,255));
 }
 
-void Circle::update(){
+void Button::update(){
 }
 
-void Circle::draw(){
+void Button::draw(){
     ofSetColor(color);
     ofCircle(position,radius);
     ofSetColor(ofGetBackgroundColor());
@@ -28,5 +28,5 @@ void Circle::draw(){
     for(int i=0;i<4;i++){
         ofCircle(position.x+diff[i]*r2*2, position.y+diff[(i+1)%4]*r2*2, r2);
     }
-    
 }
+

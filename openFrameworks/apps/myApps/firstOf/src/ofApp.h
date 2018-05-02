@@ -2,7 +2,8 @@
 
 #include "ofMain.h"
 #include "ofxGui.h"
-#include "Circle.hpp"
+#include "Button.hpp"
+#include "AnimationStrategy.hpp"
 
 class ofApp : public ofBaseApp{
     
@@ -31,5 +32,9 @@ private:
     ofxVec2Slider position;
     
     //buttons
-    Circle buttons[100];
+    Button buttons[100];
+    
+    //アニメーション
+    vector<AnimationStrategy> animations;
+    int animationIndex;
 };
