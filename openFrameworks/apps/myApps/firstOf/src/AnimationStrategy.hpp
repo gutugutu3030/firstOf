@@ -5,11 +5,14 @@
 
 class AnimationStrategy{
 public:
+    AnimationStrategy();
     AnimationStrategy(Button *buttons,int length);
-    void update();
+    virtual void update();
     bool isEnd();
+    void reset();
     
 protected:
+    virtual void setup();
     Button *buttons;
     int length;
     int frameCount;

@@ -9,10 +9,15 @@
 #include "ofMain.h"
 #include "Button.hpp"
 
+AnimationStrategy::AnimationStrategy(){
+    
+}
+
 AnimationStrategy::AnimationStrategy(Button *buttons,int length){
     this->buttons=buttons;
     this->length=length;
     this->frameCount=0;
+    this->setup();
 }
 
 void AnimationStrategy::update(){
@@ -21,4 +26,11 @@ void AnimationStrategy::update(){
 
 bool AnimationStrategy::isEnd(){
     return this->endFrame <= this->frameCount;
+}
+
+void AnimationStrategy::reset(){
+    this->frameCount=0;
+}
+
+void AnimationStrategy::setup(){
 }

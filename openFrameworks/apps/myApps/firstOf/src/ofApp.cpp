@@ -1,4 +1,5 @@
 #include "ofApp.h"
+#include "Animation1.hpp"
 
 #define ARRAY_LENGTH(array) (sizeof(array) / sizeof(array[0]))
 
@@ -25,7 +26,8 @@ void ofApp::setup(){
     
     //animation setup
     animationIndex=0;
-    
+    AnimationStrategy anime1=Animation1(buttons,100);
+//    animations.push_back((AnimationStrategy)Animation1(buttons,100));
     
     //gui settings
     gui.setup();
@@ -37,9 +39,7 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    for(Button b:buttons){
-        b.update();
-    }
+    
 }
 
 //--------------------------------------------------------------
