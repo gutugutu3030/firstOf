@@ -20,7 +20,6 @@ AnimationStrategy::AnimationStrategy(vector<std::shared_ptr<Button>> buttons,int
     }
     this->length=length;
     this->frameCount=0;
-    this->setup();
 }
 
 void AnimationStrategy::update(){
@@ -38,7 +37,4 @@ bool AnimationStrategy::isEnd(){
 
 void AnimationStrategy::reset(){
     this->frameCount=0;
-}
-
-void AnimationStrategy::setup(){
 }

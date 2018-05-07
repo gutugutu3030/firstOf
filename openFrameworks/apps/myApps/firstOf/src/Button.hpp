@@ -24,6 +24,9 @@ public:
     float getRadius(){
         return this->radius;
     }
+    float getDegrees(){
+        return this->degrees;
+    }
     
     //setter
     void setPosition(ofVec2f position){
@@ -39,9 +42,13 @@ public:
     void setRadius(float radius){
         this->radius=radius;
     }
+    void setDegrees(float degrees){
+        this->degrees=degrees;
+    }
     
 private:
     ofVec2f position;
     ofColor color;
     float radius;
+    float degrees;
 };

@@ -21,13 +21,18 @@ void Button::update(){
 
 void Button::draw(){
 //    cout << "x:" <<position.x << " y:" <<position.y <<endl;
+    
+    ofPushMatrix();
+    ofTranslate(position.x,position.y);
     ofSetColor(color);
-    ofCircle(position,radius);
+    ofCircle(0,0,radius);
     ofSetColor(ofGetBackgroundColor());
+    ofRotate(degrees);
     float r2=radius/10;
     float diff[]={1,1,-1,-1};
     for(int i=0;i<4;i++){
-        ofCircle(position.x+diff[i]*r2*2, position.y+diff[(i+1)%4]*r2*2, r2);
+        ofCircle(diff[i]*r2*2, diff[(i+1)%4]*r2*2, r2);
     }
+    ofPopMatrix();
 }
 

@@ -1,5 +1,7 @@
 #include "ofApp.h"
 #include "Animation1.hpp"
+#include "FlowAnimation.hpp"
+#include "FireworksAnimation.hpp"
 #include<memory>
 
 #define ARRAY_LENGTH(array) (sizeof(array) / sizeof(array[0]))
@@ -26,17 +28,22 @@ void ofApp::setup(){
         buttons.push_back(b);
     }
     
+    //gui settings
+    gui.setup();
+    
     //animation setup
     animationIndex=0;
     std::unique_ptr<AnimationStrategy> anime1(new Animation1(buttons,100));
-    animations.push_back(std::move(anime1));
+    //animations.push_back(std::move(anime1));
+    std::unique_ptr<AnimationStrategy> anime2(new FlowAnimation(buttons,100));
+    anime2.get()->setGui(&gui);
+    animations.push_back(std::move(anime2));
+    std::unique_ptr<AnimationStrategy> anime3(new FireworksAnimation(buttons,100));
+    anime3.get()->setGui(&gui);
+    animations.push_back(std::move(anime3));
 //    animations.push_back((AnimationStrategy)Animation1(buttons,100));
     
-    //gui settings
-    gui.setup();
-    gui.add(radius.setup("radius",200,0,400));
-    gui.add(color.setup("color",initColor,minColor,maxColor));
-    gui.add(position.setup("position",initPos,minPos,maxPos));
+
     
 }
 
@@ -45,6 +52,7 @@ void ofApp::update(){
     animations[animationIndex].get()->update();
     if(animations[animationIndex].get()->isEnd()){
         animationIndex=(animationIndex+1)%animations.size();
+        animations[animationIndex].get()->reset();
     }
 }
 

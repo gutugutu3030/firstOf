@@ -3,17 +3,18 @@
 #include "ofMain.h"
 #include "Button.hpp"
 #include<memory>
+#include "ofxGui.h"
 
 class AnimationStrategy{
 public:
     AnimationStrategy();
     AnimationStrategy(vector<std::shared_ptr<Button>> buttons,int length);
+    virtual void setGui(ofxPanel *gui){}
     virtual void update();
     bool isEnd();
-    void reset();
+    virtual void reset();
     
 protected:
-    virtual void setup();
     vector<std::weak_ptr<Button>> buttons;
     int length;
     int frameCount;

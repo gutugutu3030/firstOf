@@ -11,10 +11,7 @@
 #include<memory>
 
 Animation1::Animation1(vector<std::shared_ptr<Button>> buttons,int length) : AnimationStrategy(buttons,length){
-}
-
-void Animation1::setup(){
-    endFrame=100;
+    endFrame=3*60;
 }
 
 void Animation1::update(){
@@ -23,10 +20,11 @@ void Animation1::update(){
     for(int i=0;i<length;i++){
         if(std::shared_ptr<Button> b = buttons[i].lock()){
             b.get()->setPosition(ofVec2f(0,0));
-            float rad=(4*i+frameCount)*0.005;
-            float r=100;
+            int t=frameCount*3+i;
+            float rad=t*0.05;
+            float r=t*t*0.005;
             
-            ofVec2f pos=ofVec2f(ofGetWidth()/2+cos(rad)*r,ofGetHeight()/2+cos(rad)*r);
+            ofVec2f pos=ofVec2f(ofGetWidth()/2+cos(rad)*r,ofGetHeight()/2+sin(rad)*r);
             
             b.get()->setPosition(pos);
         }
@@ -49,4 +47,8 @@ void Animation1::update(){
     //    }
     
     AnimationStrategy::update();
+}
+
+void Animation1::reset(){
+    AnimationStrategy::reset();
 }
