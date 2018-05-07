@@ -10,10 +10,11 @@
 #include "AnimationStrategy.hpp"
 #include "ofMain.h"
 #include "Button.hpp"
+#include<memory>
 
 class Animation1 : public AnimationStrategy{
 public:
-    Animation1(Button *buttons,int length);
+    Animation1(vector<std::shared_ptr<Button>> buttons,int length);
     virtual void update();
 protected:
     virtual void setup();

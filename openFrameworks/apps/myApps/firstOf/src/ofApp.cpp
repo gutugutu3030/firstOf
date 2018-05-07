@@ -1,5 +1,6 @@
 #include "ofApp.h"
 #include "Animation1.hpp"
+#include<memory>
 
 #define ARRAY_LENGTH(array) (sizeof(array) / sizeof(array[0]))
 
@@ -20,14 +21,15 @@ void ofApp::setup(){
     ofVec2f maxPos = ofVec2f(ofGetWidth(),ofGetHeight());
     
     //button setup
-    for(int i=0;i<ARRAY_LENGTH(buttons);i++){
-        buttons[i]=Button();
+    for(int i=0;i<100;i++){
+        std::shared_ptr<Button> b(new Button());
+        buttons.push_back(b);
     }
     
     //animation setup
     animationIndex=0;
-    AnimationStrategy anime1=Animation1(buttons,100);
-    animations.push_back(anime1);
+    std::unique_ptr<AnimationStrategy> anime1(new Animation1(buttons,100));
+    animations.push_back(std::move(anime1));
 //    animations.push_back((AnimationStrategy)Animation1(buttons,100));
     
     //gui settings
@@ -40,16 +42,16 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    animations[animationIndex].update();
-    if(animations[animationIndex].isEnd()){
+    animations[animationIndex].get()->update();
+    if(animations[animationIndex].get()->isEnd()){
         animationIndex=(animationIndex+1)%animations.size();
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    for(Button b:buttons){
-        b.draw();
+    for(std::shared_ptr<Button> b:buttons){
+        b.get()->draw();
     }
     
     //パラメータを適用して円を描画
@@ -57,6 +59,11 @@ void ofApp::draw(){
     //ofCircle(ofVec2f(position),radius);
     
     gui.draw();
+}
+
+//--------------------------------------------------------------
+void ofApp::exit(){
+    
 }
 
 //--------------------------------------------------------------

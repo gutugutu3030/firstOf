@@ -8,19 +8,27 @@
 #include "AnimationStrategy.hpp"
 #include "ofMain.h"
 #include "Button.hpp"
+#include<memory>
 
 AnimationStrategy::AnimationStrategy(){
-    
 }
 
-AnimationStrategy::AnimationStrategy(Button *buttons,int length){
-    this->buttons=buttons;
+AnimationStrategy::AnimationStrategy(vector<std::shared_ptr<Button>> buttons,int length){
+    for(std::shared_ptr<Button> b:buttons){
+        std::weak_ptr<Button> weak(b);
+        this->buttons.push_back(weak);
+    }
     this->length=length;
     this->frameCount=0;
     this->setup();
 }
 
 void AnimationStrategy::update(){
+//    for(int i=0;i<length;i++){
+//        if(std::shared_ptr<Button> b = buttons[i].lock()){
+//            b.get()->setPosition(ofVec2f(0,0));
+//        }
+//    }
     this->frameCount++;
 }
 

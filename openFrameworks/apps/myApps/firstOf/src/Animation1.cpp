@@ -8,10 +8,9 @@
 #include "AnimationStrategy.hpp"
 #include "ofMain.h"
 #include "Button.hpp"
+#include<memory>
 
-Animation1::Animation1(Button *buttons,int length){
-    this->buttons=buttons;
-    this->length=length;
+Animation1::Animation1(vector<std::shared_ptr<Button>> buttons,int length) : AnimationStrategy(buttons,length){
 }
 
 void Animation1::setup(){
@@ -19,20 +18,35 @@ void Animation1::setup(){
 }
 
 void Animation1::update(){
-    if(isEnd()){
-        return;
-    }
+    
     
     for(int i=0;i<length;i++){
-        Button b=buttons[i];
-        
-        float rad=(4*i+frameCount)*0.005;
-        float r=100;
-        
-        ofVec2f pos=ofVec2f(ofGetWidth()/2+cos(rad)*r,ofGetHeight()/2+cos(rad)*r);
-        
-        b.setPosition(pos);
+        if(std::shared_ptr<Button> b = buttons[i].lock()){
+            b.get()->setPosition(ofVec2f(0,0));
+            float rad=(4*i+frameCount)*0.005;
+            float r=100;
+            
+            ofVec2f pos=ofVec2f(ofGetWidth()/2+cos(rad)*r,ofGetHeight()/2+cos(rad)*r);
+            
+            b.get()->setPosition(pos);
+        }
     }
+    
+    //    if(isEnd()){
+    //        return;
+    //    }
+    //
+    //
+    //    for(int i=0;i<length;i++){
+    //        Button b=buttons[i];
+    //
+    //        float rad=(4*i+frameCount)*0.005;
+    //        float r=100;
+    //
+    //        ofVec2f pos=ofVec2f(ofGetWidth()/2+cos(rad)*r,ofGetHeight()/2+cos(rad)*r);
+    //
+    //        b.setPosition(pos);
+    //    }
     
     AnimationStrategy::update();
 }

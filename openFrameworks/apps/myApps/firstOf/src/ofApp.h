@@ -5,12 +5,15 @@
 #include "Button.hpp"
 #include "AnimationStrategy.hpp"
 
+#include<memory>
+
 class ofApp : public ofBaseApp{
     
 public:
     void setup();
     void update();
     void draw();
+    void exit();
     
     void keyPressed(int key);
     void keyReleased(int key);
@@ -24,6 +27,7 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
+    
 private:
     //GUI
     ofxPanel gui;
@@ -32,9 +36,9 @@ private:
     ofxVec2Slider position;
     
     //buttons
-    Button buttons[100];
+    vector<std::shared_ptr<Button>> buttons;
     
     //アニメーション
-    vector<AnimationStrategy> animations;
+    vector<std::unique_ptr<AnimationStrategy>> animations;
     int animationIndex;
 };

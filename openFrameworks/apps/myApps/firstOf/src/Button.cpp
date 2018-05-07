@@ -20,6 +20,7 @@ void Button::update(){
 }
 
 void Button::draw(){
+//    cout << "x:" <<position.x << " y:" <<position.y <<endl;
     ofSetColor(color);
     ofCircle(position,radius);
     ofSetColor(ofGetBackgroundColor());
